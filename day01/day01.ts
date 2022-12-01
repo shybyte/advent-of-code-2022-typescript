@@ -2,7 +2,7 @@ export function getMaxElfCalories(input: string): number {
   return Math.max(...getCalorieSumsOfElves(input));
 }
 
-export function getSumOfTopThreeElves(input: string): number {
+export function getCalorieSumOfTopThreeElves(input: string): number {
   const calorieSumsOfElves = getCalorieSumsOfElves(input);
   calorieSumsOfElves.sort((a, b) => b - a);
   return sum(calorieSumsOfElves.slice(0, 3));
