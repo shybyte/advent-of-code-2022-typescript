@@ -15,13 +15,13 @@ function sumLines(input: string, getScoreByLineContent: (line: string) => number
   );
 }
 
-enum Shape {
+const enum Shape {
   Rock = 1,
   Paper = 2,
   Scissors = 3,
 }
 
-enum Outcome {
+const enum Outcome {
   Lost = 0,
   Draw = 3,
   Win = 6,
