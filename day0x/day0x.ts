@@ -9,11 +9,11 @@ export function solvePart2(input: string): number {
 }
 
 function solvePart1SingleLine(line: string): number {
-  return 0;
+  return line.length;
 }
 
 function solvePart2SingleLine(line: string): number {
-  return 0;
+  return line.length;
 }
 
 function sum(numbers: number[]): number {
