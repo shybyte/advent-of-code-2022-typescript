@@ -4,5 +4,5 @@ export function benchmarkFunction(f: () => void, repetitions: number) {
     f();
   }
   const completeDuration = performance.now() - startTime;
-  console.log('mean duration = ', completeDuration / repetitions);
+  console.log('mean duration ms = ', completeDuration / repetitions);
 }
