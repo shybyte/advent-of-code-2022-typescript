@@ -1,5 +1,5 @@
 type Stack = string[];
-type Instruction = [number, number, number];
+type Instruction = [amount: number, from: number, to: number];
 
 export function solvePart1(input: string): string {
   return solve(input, ([amount, from, to], stacks) => {
