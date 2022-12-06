@@ -48,9 +48,7 @@ function parseInput(input: string): [Stack[], Instruction[]] {
     .map((instructionString) => [...instructionString.matchAll(/\d+/g)])
     .map((instructionMatchArray) => {
       const instruction = instructionMatchArray.map((x) => parseInt(x as any as string)) as Instruction;
-      instruction[1] -= 1;
-      instruction[2] -= 1;
-      return instruction;
+      return [instruction[0], instruction[1] - 1, instruction[2] - 1];
     });
 
   return [stacks, instructions];
