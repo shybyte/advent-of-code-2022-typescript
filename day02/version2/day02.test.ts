@@ -21,12 +21,12 @@ test('large', () => {
 
   benchmarkFunction(() => {
     getScore1(input);
-  }, 10_000);
+  }, 1_000);
 
   const score2 = getScore2(input);
   expect(score2).toBe(13490);
 
   benchmarkFunction(() => {
     getScore2(input);
-  }, 10_000);
+  }, 1000);
 });
