@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 import { solvePart1, solvePart2 } from './day08';
 
 test('simple', () => {
-  const input = readFileSync(import.meta.dir + '/test-data-simple.txt', 'utf8');
+  const input = readFileSync(import.meta.dir + '/../test-data-simple.txt', 'utf8');
 
   const solution1 = solvePart1(input);
   expect(solution1).toBe(21);
@@ -13,7 +13,7 @@ test('simple', () => {
 });
 
 test('large', () => {
-  const input = readFileSync(import.meta.dir + '/test-data-large.txt', 'utf8');
+  const input = readFileSync(import.meta.dir + '/../test-data-large.txt', 'utf8');
 
   const solution1 = solvePart1(input);
   expect(solution1).toBe(1818);
