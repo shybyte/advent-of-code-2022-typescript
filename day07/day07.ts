@@ -13,16 +13,20 @@ interface File {
 
 export function solvePart1(input: string): number {
   const rootFolder = deriveFileSystem(input);
-  calculateFolderSize(rootFolder);
-  // console.log('rootFolder:', JSON.stringify(rootFolder, null, 2));
   const allFolders = flattenFolders(rootFolder);
   const smallFolders = allFolders.filter((folder) => folder.size <= 100_000);
-  // console.log('smallFolders:', smallFolders);
   return sum(smallFolders.map((folder) => folder.size));
 }
 
 export function solvePart2(input: string): number {
-  return input.length;
+  const rootFolder = deriveFileSystem(input);
+  const allFolders = flattenFolders(rootFolder);
+
+  allFolders.sort((f1, f2) => f1.size - f2.size);
+  const freeSpace = 70_000_000 - rootFolder.size;
+  const neededAdditionalFreeSpace = 30_000_000 - freeSpace;
+  const folderToDelete = allFolders.find((folder) => folder.size >= neededAdditionalFreeSpace)!;
+  return folderToDelete.size;
 }
 
 function calculateFolderSize(folder: /*mut*/ Folder) {
@@ -65,6 +69,7 @@ function deriveFileSystem(input: string): Folder {
     }
   }
 
+  calculateFolderSize(rootFolder);
   return rootFolder;
 }
 

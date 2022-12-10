@@ -8,8 +8,8 @@ test('simple', () => {
   const solution1 = solvePart1(input);
   expect(solution1).toBe(95437);
 
-  // const solution2 = solvePart2(input);
-  // expect(solution2).toBe(144);
+  const solution2 = solvePart2(input);
+  expect(solution2).toBe(24933642);
 });
 
 test('large', () => {
@@ -18,6 +18,6 @@ test('large', () => {
   const solution1 = solvePart1(input);
   expect(solution1).toBe(1543140);
 
-  // const solution2 = solvePart2(input);
-  // expect(solution2).toBe(9746);
+  const solution2 = solvePart2(input);
+  expect(solution2).toBe(1117448);
 });
