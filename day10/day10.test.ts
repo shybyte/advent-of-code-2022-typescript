@@ -1,6 +1,6 @@
 import { expect, test } from 'bun:test';
 import { readFileSync } from 'fs';
-import { executeCommands, parseCommands, renderPixelsAsString, SCREEN_WIDTH, solve, solve2 } from './day10';
+import { executeCommands, parseCommands, SCREEN_WIDTH, solve, solve2 } from './day10';
 
 const PART2_KNOT_NUMBER = 10;
 
@@ -18,7 +18,7 @@ test('simple-2', () => {
   expect(solution1).toBe(13140);
 
   const solution2 = solve2(input);
-  expect(renderPixelsAsString(solution2)).toBe(
+  expect(solution2).toBe(
     `##..##..##..##..##..##..##..##..##..##..
 ###...###...###...###...###...###...###.
 ####....####....####....####....####....
@@ -35,7 +35,7 @@ test('large', () => {
   expect(solution1).toBe(16060);
 
   const solution2 = solve2(input);
-  expect(renderPixelsAsString(solution2)).toBe(`###...##...##..####.#..#.#....#..#.####.
+  expect(solution2).toBe(`###...##...##..####.#..#.#....#..#.####.
 #..#.#..#.#..#.#....#.#..#....#..#.#....
 ###..#..#.#....###..##...#....####.###..
 #..#.####.#....#....#.#..#....#..#.#....

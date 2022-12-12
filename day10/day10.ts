@@ -6,10 +6,10 @@ export function solve(input: string): number {
   return sum(calculateSignalStrengths(registerXValueByCycle));
 }
 
-export function solve2(input: string): boolean[] {
+export function solve2(input: string): string {
   const commands = parseCommands(input);
   const registerXValueByCycle = executeCommands(commands);
-  return calculatePixel(registerXValueByCycle);
+  return renderCRTAsString(registerXValueByCycle);
 }
 
 export function parseCommands(input: string): Command[] {
@@ -44,20 +44,16 @@ function calculateSignalStrengths(registerXValueByCycle: number[]) {
 export const SCREEN_WIDTH = 40;
 export const SCREEN_HEIGHT = 6;
 
-function calculatePixel(registerXValueByCycle: number[]): boolean[] {
-  return registerXValueByCycle.map((regxValue, i) => {
-    const x = i % SCREEN_WIDTH;
-    return x === regxValue || x === regxValue - 1 || x === regxValue + 1;
-  });
-}
-
-export function renderPixelsAsString(pixels: boolean[]) {
+export function renderCRTAsString(registerXValueByCycle: number[]): string {
   let result = '';
   for (let i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++) {
-    if (i > 0 && i % SCREEN_WIDTH === 0) {
+    const x = i % SCREEN_WIDTH;
+    if (i > 0 && x === 0) {
       result += '\n';
     }
-    result += pixels[i] ? '#' : '.';
+    const regxValue = registerXValueByCycle[i];
+    const isPixelSet = [regxValue - 1, regxValue, regxValue + 1].includes(x);
+    result += isPixelSet ? '#' : '.';
   }
   return result;
 }
