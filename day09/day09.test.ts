@@ -13,20 +13,20 @@ test('simple', () => {
   // expect(solution2).toBe(144);
 });
 
-// test('large', () => {
-//   const input = readFileSync(import.meta.dir + '/test-data-large.txt', 'utf8');
-//
-//   const solution1 = solvePart1(input);
-//   expect(solution1).toBe(9746);
-//
-//   const solution2 = solvePart2(input);
-//   expect(solution2).toBe(9746);
-//
-//   benchmarkFunction(() => {
-//     solvePart1(input);
-//   }, 10_000);
-//
-//   benchmarkFunction(() => {
-//     solvePart2(input);
-//   }, 10_000);
-// });
+test('large', () => {
+  const input = readFileSync(import.meta.dir + '/test-data-large.txt', 'utf8');
+
+  const solution1 = solvePart1(input);
+  expect(solution1).toBe(5779);
+
+  // const solution2 = solvePart2(input);
+  // expect(solution2).toBe(9746);
+  //
+  // benchmarkFunction(() => {
+  //   solvePart1(input);
+  // }, 10_000);
+  //
+  // benchmarkFunction(() => {
+  //   solvePart2(input);
+  // }, 10_000);
+});
