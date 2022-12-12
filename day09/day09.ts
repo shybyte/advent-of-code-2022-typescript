@@ -9,12 +9,9 @@ interface Motion {
   steps: number;
 }
 
-interface World {
-  head: Pos;
-  tail: Pos;
-}
+type Rope = Pos[]; //  Head is at index 0
 
-export function solvePart1(input: string): number {
+export function solve(input: string, knots = 2): number {
   const motions = input
     .trim()
     .split('\n')
@@ -24,12 +21,13 @@ export function solvePart1(input: string): number {
     });
 
   const visitedPositions = new Set<string>();
-  let world: World = { head: { x: 0, y: 0 }, tail: { x: 0, y: 0 } };
+  const rope = Array.from({ length: knots }, () => ({ x: 0, y: 0 }));
 
   for (const motion of motions) {
     for (let i = 0; i < motion.steps; i++) {
-      world = simulateMotionStep(world, motion.direction);
-      visitedPositions.add(world.tail.x + '-' + world.tail.y);
+      simulateMotionStep(rope, motion.direction);
+      const tail = rope[rope.length - 1];
+      visitedPositions.add(tail.x + '-' + tail.y);
     }
   }
 
@@ -51,14 +49,20 @@ function isEqual(pos1: Pos, pos2: Pos) {
   return pos1.x === pos2.x && pos1.y === pos2.y;
 }
 
-function simulateMotionStep(world: World, direction: Direction): World {
-  const newHead = addPos(world.head, POS_DELTA_BY_DIRECTION[direction]);
-  const tailToHeadMoveStep: Pos = { x: Math.sign(newHead.x - world.tail.x), y: Math.sign(newHead.y - world.tail.y) };
-  const potentialNextTailPos = addPos(world.tail, tailToHeadMoveStep);
-  const newTail = isEqual(potentialNextTailPos, newHead) ? world.tail : potentialNextTailPos;
-  return { head: newHead, tail: newTail };
-}
+function simulateMotionStep(/*mut*/ rope: Rope, direction: Direction) {
+  rope[0] = addPos(rope[0], POS_DELTA_BY_DIRECTION[direction]);
 
-export function solvePart2(input: string): number {
-  return input.length;
+  for (let i = 1; i < rope.length; i++) {
+    const knot = rope[i];
+    const prevKnot = rope[i - 1];
+
+    const moveCloserToPrevKnotStep: Pos = {
+      x: Math.sign(prevKnot.x - knot.x),
+      y: Math.sign(prevKnot.y - knot.y),
+    };
+    const potentialNextPos = addPos(knot, moveCloserToPrevKnotStep);
+    if (!isEqual(potentialNextPos, prevKnot)) {
+      rope[i] = potentialNextPos;
+    }
+  }
 }
