@@ -3,6 +3,7 @@ type Command = ['addx', number] | ['noop'];
 export function solve(input: string): number {
   const commands = parseCommands(input);
   const registerXValueByCycle: number[] = executeCommands(commands);
+  registerXValueByCycle.forEach((v, i) => console.log(i + '=' + v));
   const signalStrengths = calculateSignalStrengths(registerXValueByCycle);
   console.log('signalStrengths:', signalStrengths);
   return sum(signalStrengths);
@@ -38,7 +39,7 @@ export function executeCommands(commands: Command[]): number[] {
 }
 
 function calculateSignalStrengths(registerXValueByCycle: number[]) {
-  return [20, 60, 100, 140, 180, 220].map((i) => registerXValueByCycle[i] * i);
+  return [20, 60, 100, 140, 180, 220].map((i) => registerXValueByCycle[i - 1] * i);
 }
 
 function sum(numbers: number[]): number {

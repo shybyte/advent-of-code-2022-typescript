@@ -20,12 +20,12 @@ test('simple-2', () => {
   expect(solution1).toBe(13140);
 });
 
-// test('large', () => {
-//   const input = readFileSync(import.meta.dir + '/test-data-large.txt', 'utf8');
-//
-//   const solution1 = solve(input);
-//   expect(solution1).toBe(5779);
-//
-//   // const solution2 = solve(input, PART2_KNOT_NUMBER);
-//   // expect(solution2).toBe(2331);
-// });
+test('large', () => {
+  const input = readFileSync(import.meta.dir + '/test-data-large.txt', 'utf8');
+
+  const solution1 = solve(input);
+  expect(solution1).toBe(16060);
+
+  // const solution2 = solve(input, PART2_KNOT_NUMBER);
+  // expect(solution2).toBe(2331);
+});
